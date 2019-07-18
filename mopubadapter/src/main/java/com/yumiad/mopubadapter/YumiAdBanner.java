@@ -172,9 +172,9 @@ public class YumiAdBanner extends CustomEventBanner {
 
     private AdSize calculateAdSize(int width, int height) {
         // Use the smallest AdSize that will properly contain the adView
-        if (width == 320 && height == 50) {
+        if (height <= 50) {
             return AdSize.BANNER_SIZE_320X50;
-        } else if (width == 728 && height == 90) {
+        } else if (height <= 90) {
             return AdSize.BANNER_SIZE_728X90;
         } else {
             return AdSize.BANNER_SIZE_320X50;
