@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.mopub.common.BaseLifecycleListener;
 import com.mopub.common.LifecycleListener;
 import com.mopub.common.MoPubReward;
 import com.mopub.mobileads.CustomEventRewardedVideo;
@@ -35,6 +36,7 @@ public class YumiAdRewardedVideo extends CustomEventRewardedVideo {
 
     private YumiMedia mYumiMedia;
     private String mSlotId;
+    private boolean isClosed;
 
     @Override
     protected boolean hasVideoAvailable() {
@@ -54,8 +56,15 @@ public class YumiAdRewardedVideo extends CustomEventRewardedVideo {
     @Nullable
     @Override
     protected LifecycleListener getLifecycleListener() {
-        return null;
+        return mLifecycleListener;
     }
+
+    private LifecycleListener mLifecycleListener = new BaseLifecycleListener() {
+        @Override
+        public void onDestroy(@NonNull Activity activity) {
+            YumiMedias.removeMediasByActivity(activity);
+        }
+    };
 
     @Override
     protected boolean checkAndInitializeSdk(@NonNull Activity launcherActivity, @NonNull Map<String, Object> localExtras, @NonNull Map<String, String> serverExtras) throws Exception {
@@ -63,15 +72,23 @@ public class YumiAdRewardedVideo extends CustomEventRewardedVideo {
         YumiSettings.runInCheckPermission(isRunInCheckPermissions(serverExtras));
         YumiSettings.setGDPRConsent(getGDPRConsent(serverExtras));
 
-        mYumiMedia = new YumiMedia(launcherActivity, mSlotId);
+        mYumiMedia = YumiMedias.getYumiMedia(launcherActivity, mSlotId);
         mYumiMedia.setMediaEventListener(new IYumiMediaListener() {
             @Override
             public void onMediaPrepared() {
+                if (isClosed) {
+                    return;
+                }
+
                 MoPubRewardedVideoManager.onRewardedVideoLoadSuccess(YumiAdRewardedVideo.class, mSlotId);
             }
 
             @Override
             public void onMediaPreparedFailed(AdError adError) {
+                if (isClosed) {
+                    return;
+                }
+
                 Log.d(TAG, "onMediaPreparedFailed: " + adError);
                 MoPubRewardedVideoManager.onRewardedVideoLoadFailure(YumiAdRewardedVideo.class, mSlotId, recodeYumiError(adError));
             }
@@ -84,22 +101,30 @@ public class YumiAdRewardedVideo extends CustomEventRewardedVideo {
 
             @Override
             public void onMediaExposureFailed(AdError adError) {
+                if (isClosed) {
+                    return;
+                }
+
                 Log.d(TAG, "onMediaExposureFailed: " + adError);
                 MoPubRewardedVideoManager.onRewardedVideoPlaybackError(YumiAdRewardedVideo.class, mSlotId, recodeYumiError(adError));
             }
 
             @Override
             public void onMediaClicked() {
+                if (isClosed) {
+                    return;
+                }
                 MoPubRewardedVideoManager.onRewardedVideoClicked(YumiAdRewardedVideo.class, mSlotId);
             }
 
             @Override
             public void onMediaClosed(boolean isRewarded) {
-                MoPubRewardedVideoManager.onRewardedVideoClosed(YumiAdRewardedVideo.class, mSlotId);
+                isClosed = true;
                 if (isRewarded) {
                     MoPubReward reward = MoPubReward.success(REWARD_LABEL, REWARD_AMOUNT);
                     MoPubRewardedVideoManager.onRewardedVideoCompleted(YumiAdRewardedVideo.class, mSlotId, reward);
                 }
+                MoPubRewardedVideoManager.onRewardedVideoClosed(YumiAdRewardedVideo.class, mSlotId);
             }
 
             @Override
@@ -109,19 +134,26 @@ public class YumiAdRewardedVideo extends CustomEventRewardedVideo {
 
             @Override
             public void onMediaStartPlaying() {
+                if (isClosed) {
+                    return;
+                }
                 MoPubRewardedVideoManager.onRewardedVideoStarted(YumiAdRewardedVideo.class, mSlotId);
 
             }
         });
         mYumiMedia.setChannelID(getChannelId(serverExtras));
         mYumiMedia.setVersionName(getVersionName(serverExtras));
+        mYumiMedia.requestYumiMedia();
         return true;
     }
 
     @Override
     protected void loadWithSdkInitialized(@NonNull Activity activity, @NonNull Map<String, Object> localExtras, @NonNull Map<String, String> serverExtras) throws Exception {
+        isClosed = false;
         if (mYumiMedia != null) {
-            mYumiMedia.requestYumiMedia();
+            if (mYumiMedia.isReady()) {
+                MoPubRewardedVideoManager.onRewardedVideoLoadSuccess(YumiAdRewardedVideo.class, mSlotId);
+            }
         }
     }
 
@@ -133,8 +165,5 @@ public class YumiAdRewardedVideo extends CustomEventRewardedVideo {
 
     @Override
     protected void onInvalidate() {
-        if (mYumiMedia != null) {
-            mYumiMedia.destroy();
-        }
     }
 }

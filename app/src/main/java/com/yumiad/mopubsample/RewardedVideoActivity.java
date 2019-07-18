@@ -3,9 +3,11 @@ package com.yumiad.mopubsample;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.mopub.common.MoPub;
 import com.mopub.common.MoPubReward;
 import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubRewardedVideoListener;
@@ -36,6 +38,12 @@ public class RewardedVideoActivity extends AppCompatActivity implements MoPubRew
         MoPubRewardedVideos.setRewardedVideoListener(this);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MoPub.onDestroy(this);
+    }
+
     public void requestAd(View view) {
         mLogView.setText("");
         mLoadingView.setVisibility(View.VISIBLE);
@@ -50,6 +58,7 @@ public class RewardedVideoActivity extends AppCompatActivity implements MoPubRew
 
 
     void addLog(String msg) {
+        Log.d(TAG, msg);
         mLogView.append("\n" + msg);
     }
 
