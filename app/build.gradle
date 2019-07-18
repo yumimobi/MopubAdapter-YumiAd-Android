@@ -16,6 +16,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -30,6 +35,9 @@ dependencies {
     implementation('com.mopub:mopub-sdk:+@aar') {
         transitive = true
     }
+
+    // google identifier
+    implementation "com.google.android.gms:play-services-ads-identifier:16.0.0"
 
     // yumiAd sdk adapters
     implementation project(path: ':mopubadapter')
