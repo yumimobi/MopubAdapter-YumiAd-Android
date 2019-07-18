@@ -31,13 +31,7 @@ final class YumiAdUtil {
 
     static boolean isAutoloadNext(Map<String, String> extras) {
         String isAuto = extras.get("autoLoadNext");
-        if (TextUtils.equals(isAuto, "true")) {
-            return true;
-        }else if(TextUtils.equals(isAuto, "false")) {
-            return false;
-        }else {
-            return false;
-        }
+        return Boolean.valueOf(isAuto);
     }
 
     static String getChannelId(Map<String, String> extras) {
@@ -60,14 +54,8 @@ final class YumiAdUtil {
     }
 
     static boolean isRunInCheckPermissions(Map<String, String> extras) {
-        String runInCheckPermissions = extras.get("extras");
-        if (TextUtils.equals(runInCheckPermissions, "true")) {
-            return true;
-        }else if(TextUtils.equals(runInCheckPermissions, "false")) {
-            return false;
-        }else {
-            return false;
-        }
+        String runInCheckPermissions = extras.get("runInCheckPermissions");
+        return Boolean.valueOf(runInCheckPermissions);
     }
 
     static MoPubErrorCode recodeYumiError(AdError yumiError) {
