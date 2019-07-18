@@ -17,6 +17,7 @@ import static com.yumiad.mopubadapter.YumiAdUtil.getGDPRConsent;
 import static com.yumiad.mopubadapter.YumiAdUtil.getSlotId;
 import static com.yumiad.mopubadapter.YumiAdUtil.getVersionName;
 import static com.yumiad.mopubadapter.YumiAdUtil.isAutoloadNext;
+import static com.yumiad.mopubadapter.YumiAdUtil.isRunInCheckPermissions;
 import static com.yumiad.mopubadapter.YumiAdUtil.recodeYumiError;
 
 /**
@@ -35,7 +36,7 @@ public class YumiAdInterstitial extends CustomEventInterstitial {
             Log.e(TAG, "YumiAd need Activity context.");
             return;
         }
-
+        YumiSettings.runInCheckPermission(isRunInCheckPermissions(serverExtras));
         YumiSettings.setGDPRConsent(getGDPRConsent(serverExtras));
 
         Activity activity = (Activity) context;

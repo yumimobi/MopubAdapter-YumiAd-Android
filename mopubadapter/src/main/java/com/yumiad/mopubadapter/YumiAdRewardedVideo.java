@@ -20,6 +20,7 @@ import static com.yumiad.mopubadapter.YumiAdUtil.getChannelId;
 import static com.yumiad.mopubadapter.YumiAdUtil.getGDPRConsent;
 import static com.yumiad.mopubadapter.YumiAdUtil.getSlotId;
 import static com.yumiad.mopubadapter.YumiAdUtil.getVersionName;
+import static com.yumiad.mopubadapter.YumiAdUtil.isRunInCheckPermissions;
 import static com.yumiad.mopubadapter.YumiAdUtil.recodeYumiError;
 
 /**
@@ -59,7 +60,7 @@ public class YumiAdRewardedVideo extends CustomEventRewardedVideo {
     @Override
     protected boolean checkAndInitializeSdk(@NonNull Activity launcherActivity, @NonNull Map<String, Object> localExtras, @NonNull Map<String, String> serverExtras) throws Exception {
         mSlotId = getSlotId(serverExtras);
-
+        YumiSettings.runInCheckPermission(isRunInCheckPermissions(serverExtras));
         YumiSettings.setGDPRConsent(getGDPRConsent(serverExtras));
 
         mYumiMedia = new YumiMedia(launcherActivity, mSlotId);

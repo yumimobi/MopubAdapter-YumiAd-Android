@@ -53,6 +53,11 @@ final class YumiAdUtil {
         }
     }
 
+    static boolean isRunInCheckPermissions(Map<String, String> extras) {
+        String runInCheckPermissions = extras.get("runInCheckPermissions");
+        return Boolean.valueOf(runInCheckPermissions);
+    }
+
     static MoPubErrorCode recodeYumiError(AdError yumiError) {
         if (yumiError == null) {
             return MoPubErrorCode.NO_FILL;
