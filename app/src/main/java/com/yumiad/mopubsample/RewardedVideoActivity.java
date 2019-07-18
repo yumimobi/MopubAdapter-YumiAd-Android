@@ -39,18 +39,6 @@ public class RewardedVideoActivity extends AppCompatActivity implements MoPubRew
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        MoPub.onResume(this);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        MoPub.onPause(this);
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         MoPub.onDestroy(this);
