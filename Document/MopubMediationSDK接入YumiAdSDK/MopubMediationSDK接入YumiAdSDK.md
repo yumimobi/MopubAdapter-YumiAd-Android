@@ -22,6 +22,8 @@
 ## 1. YumiAdSDK Mopub Adapter接入步骤
 
 ### 1.1 添加YumiAdSDK Mopub Adapter源码到你的工程中
+[下载 YumiAdSDK  Mopub Adapter ](https://github.com/yumimobi/MopubAdapter-YumiAd-Android/tree/master/mopubadapter/src/main/java/com/yumiad/mopubadapter)
+
 ![Alt text](./android-image4.png)
 
 ### 1.2 添加build.gradle依赖

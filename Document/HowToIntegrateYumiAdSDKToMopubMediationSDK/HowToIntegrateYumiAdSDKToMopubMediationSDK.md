@@ -23,6 +23,8 @@
 ## 1. Mopub Mediation SDK  Integrated YumiAdSDK adapter
 
 ### 1.1 Add YumiAdSDK Mopub Adapter to your project
+[Download YumiAdSDK  Mopub Adapter](https://github.com/yumimobi/MopubAdapter-YumiAd-Android/tree/master/mopubadapter/src/main/java/com/yumiad/mopubadapter)
+
 ![Alt text](./android-image4.png)
 
 ### 1.2 add build.gradle dependencies
