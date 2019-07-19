@@ -12,7 +12,7 @@
          * [2.7 Make sure the source status is running.](#27-make-sure-the-source-status-is-running)
          * [2.8 Final check list](#28-final-check-list)
       * [3. Note](#3-note)
-         * [3.1 Permissions for Android 6.0 and newer versions（可选）](#31-permissions-for-android-60-and-newer-versions可选)
+         * [3.1 Permissions for Android 6.0 and newer versions（Optional）](#31-permissions-for-android-60-and-newer-versionsoptional)
          * [3.2 If you loaded YumiAdSDK  rewarded video ads, please call the MoPub.onDestroy(this) interface in your Activity's onDestroy method.](#32-if-you-loaded-yumiadsdk--rewarded-video-ads-please-call-the-mopubondestroythis-interface-in-your-activitys-ondestroy-method)
       * [4.Test SLOTID](#4test-slotid)
 
