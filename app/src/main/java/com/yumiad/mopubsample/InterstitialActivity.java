@@ -34,7 +34,6 @@ public class InterstitialActivity extends AppCompatActivity implements MoPubInte
 
         mInterstitial = new MoPubInterstitial(this, MOPUB_UNIT_ID_INTERSTITIAL);
         mInterstitial.setInterstitialAdListener(this);
-        mInterstitial.load();
     }
 
     public void requestAd(View view) {

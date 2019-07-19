@@ -40,7 +40,6 @@ public class YumiAdBanner extends CustomEventBanner {
     private YumiBanner banner;
 
     private String SLOTID = "slotId";
-    private String AUTOLOADNEXT = "autoLoadNext";
 
     @Override
     protected void loadBanner(Context context, final CustomEventBannerListener mBannerListener, Map<String, Object> localExtras, Map<String, String> serverExtras) {
@@ -70,12 +69,9 @@ public class YumiAdBanner extends CustomEventBanner {
 
 
         String slotId;
-        String autoLoadNext;
         if (serverExtrasAreValid(serverExtras)) {
             slotId = serverExtras.get(SLOTID);
-            autoLoadNext = serverExtras.get(AUTOLOADNEXT);
             ZplayDebug.i(TAG, "Banner Load slotId : " + slotId, onoff);
-            ZplayDebug.i(TAG, "Banner Load autoLoadNext : " + autoLoadNext, onoff);
         } else {
             ZplayDebug.i(TAG, "Banner Load Failed,server Extras Are not Valid", onoff);
             if (mBannerListener != null) {
@@ -158,9 +154,8 @@ public class YumiAdBanner extends CustomEventBanner {
 
     private boolean serverExtrasAreValid(final Map<String, String> serverExtras) {
         final String slotId = serverExtras.get(SLOTID);
-        final String autoLoadNext = serverExtras.get(AUTOLOADNEXT);
 
-        return !TextUtils.isEmpty(slotId) && !TextUtils.isEmpty(autoLoadNext);
+        return !TextUtils.isEmpty(slotId);
     }
 
 
