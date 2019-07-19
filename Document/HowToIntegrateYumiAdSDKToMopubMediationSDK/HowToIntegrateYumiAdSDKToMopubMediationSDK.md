@@ -2,8 +2,8 @@
    * [How to integrate YumiAdSDK to Mopub Mediation SDK](#how-to-integrate-yumiadsdk-to-mopub-mediation-sdk)
       * [Android](#android)
          * [1. Mopub Mediation SDK  Integrated YumiAdSDK adapter](#1-mopub-mediation-sdk--integrated-yumiadsdk-adapter)
-            * [1.1Add YumiAdSDK Mopub Adapter to your project**](#11add-yumiadsdk-mopub-adapter-to-your-project)
-            * [1.2 add build.gradle dependencies**](#12-add-buildgradle-dependencies)
+            * [1.1Add YumiAdSDK Mopub Adapter to your project](#11add-yumiadsdk-mopub-adapter-to-your-project)
+            * [1.2 add build.gradle dependencies](#12-add-buildgradle-dependencies)
          * [2. Add new custom sdk network in Mopub dashboard](#2-add-new-custom-sdk-network-in-mopub-dashboard)
             * [2.1 Click new network button](#21-click-new-network-button)
             * [2.2 Choose custom sdk network](#22-choose-custom-sdk-network)
@@ -25,10 +25,10 @@
 
 ### 1. Mopub Mediation SDK  Integrated YumiAdSDK adapter
 
-#### 1.1Add YumiAdSDK Mopub Adapter to your project**
+#### 1.1Add YumiAdSDK Mopub Adapter to your project
 ![Alt text](./android-image4.png)
 
-#### 1.2 add build.gradle dependencies**
+#### 1.2 add build.gradle dependencies
 
 ```java
 //add YumiAdSDK maven url to project's build.gradle

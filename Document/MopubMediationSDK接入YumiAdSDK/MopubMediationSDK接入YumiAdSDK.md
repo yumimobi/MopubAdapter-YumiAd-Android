@@ -2,8 +2,8 @@
    * [Mopub Mediation SDK 接入 YumiAdSDK](#mopub-mediation-sdk-接入-yumiadsdk)
       * [Android](#android)
          * [1. YumiAdSDK Mopub Adapter接入步骤](#1-yumiadsdk-mopub-adapter接入步骤)
-            * [1.1 添加YumiAdSDK Mopub Adapter源码到你的工程中**](#11-添加yumiadsdk-mopub-adapter源码到你的工程中)
-            * [1.2 添加build.gradle依赖**](#12-添加buildgradle依赖)
+            * [1.1 添加YumiAdSDK Mopub Adapter源码到你的工程中](#11-添加yumiadsdk-mopub-adapter源码到你的工程中)
+            * [1.2 添加build.gradle依赖](#12-添加buildgradle依赖)
          * [2.在 Mopub dashboardnew 中添加 custom sdk network](#2在-mopub-dashboardnew-中添加-custom-sdk-network)
             * [2.1 点击 new network button](#21-点击-new-network-button)
             * [2.2 选择 custom sdk network](#22-选择-custom-sdk-network)
@@ -24,10 +24,10 @@
 
 ### 1. YumiAdSDK Mopub Adapter接入步骤
 
-#### 1.1 添加YumiAdSDK Mopub Adapter源码到你的工程中**
+#### 1.1 添加YumiAdSDK Mopub Adapter源码到你的工程中
 ![Alt text](./android-image4.png)
 
-#### 1.2 添加build.gradle依赖**
+#### 1.2 添加build.gradle依赖
 
 ```java
 //确认 android studio 的 Project 根目录主 build.gradle 中配置了 jcenter 支持。
