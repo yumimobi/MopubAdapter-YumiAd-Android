@@ -36,7 +36,6 @@ public class YumiAdBanner extends CustomEventBanner {
 
     private static boolean onoff = true;
 
-    private FrameLayout bannerContainer;
     private YumiBanner banner;
 
     private String SLOTID = "slotId";
@@ -104,7 +103,6 @@ public class YumiAdBanner extends CustomEventBanner {
 
             @Override
             public void onBannerPreparedFailed(AdError adError) {
-                removeBannerContainer();
                 if(mBannerListener != null){
                     mBannerListener.onBannerFailed(recodeYumiError(adError));
                 }
@@ -163,12 +161,6 @@ public class YumiAdBanner extends CustomEventBanner {
             return AdSize.BANNER_SIZE_728X90;
         } else {
             return AdSize.BANNER_SIZE_320X50;
-        }
-    }
-
-    private void removeBannerContainer(){
-        if(bannerContainer != null && bannerContainer.getParent() instanceof ViewGroup){
-            ((ViewGroup) bannerContainer.getParent()).removeView(bannerContainer);
         }
     }
 
