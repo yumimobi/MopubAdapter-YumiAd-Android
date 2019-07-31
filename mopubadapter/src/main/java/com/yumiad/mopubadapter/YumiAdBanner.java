@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -17,6 +16,7 @@ import com.yumi.android.sdk.ads.publish.YumiSettings;
 import com.yumi.android.sdk.ads.publish.enumbean.AdSize;
 import com.yumi.android.sdk.ads.publish.listener.IYumiBannerListener;
 import com.yumi.android.sdk.ads.utils.ZplayDebug;
+import com.yumi.android.sdk.ads.utils.views.AdContainer;
 
 import java.util.Map;
 
@@ -42,7 +42,7 @@ public class YumiAdBanner extends CustomEventBanner {
     private String SLOTID = "slotId";
 
     @Override
-    protected void loadBanner(Context context, final CustomEventBannerListener mBannerListener, Map<String, Object> localExtras, Map<String, String> serverExtras) {
+    protected void loadBanner(final Context context, final CustomEventBannerListener mBannerListener, Map<String, Object> localExtras, Map<String, String> serverExtras) {
         ZplayDebug.e(TAG, "loadBanner", onoff);
         if (!(context instanceof Activity)) {
             if (mBannerListener != null) {
@@ -81,21 +81,11 @@ public class YumiAdBanner extends CustomEventBanner {
         }
 
         /*
-         * First step:
-         *  create banner container , this container is a viewgroup, and add the container into your activity content view.
-         */
-        bannerContainer = new FrameLayout(context);
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.gravity = Gravity.BOTTOM | Gravity.CENTER;
-        ((Activity) context).addContentView(bannerContainer, params);
-        /*
-         * Thrid step :
          * create YumiBanner instance by activity and your YumiID.
          */
         banner = new YumiBanner((Activity) context, slotId, false);
         //setBannerContainer
-        banner.setBannerContainer(bannerContainer, calculateAdSize(width, height), true);
+        banner.setBannerContainer(null, calculateAdSize(width, height), true);
         //setChannelID . (Recommend)
         banner.setChannelID(getChannelId(serverExtras));
         // set channel and version (optional)
@@ -107,8 +97,8 @@ public class YumiAdBanner extends CustomEventBanner {
             @Override
             public void onBannerPrepared() {
                 if (mBannerListener != null) {
-                    removeBannerContainer();
-                    mBannerListener.onBannerLoaded(bannerContainer);
+                    AdContainer adContainer = banner.getBannerView();
+                    mBannerListener.onBannerLoaded(adContainer);
                 }
             }
 

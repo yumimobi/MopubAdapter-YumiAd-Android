@@ -88,7 +88,7 @@ public class YumiAdInterstitial extends CustomEventInterstitial {
     @Override
     protected void showInterstitial() {
         if (mYumiInterstitial != null && mYumiInterstitial.isReady()) {
-            mYumiInterstitial.showInterstitial(false);
+            mYumiInterstitial.showInterstitial();
         }
     }
 
