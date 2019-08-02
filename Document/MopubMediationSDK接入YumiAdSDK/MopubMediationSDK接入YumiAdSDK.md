@@ -14,6 +14,7 @@
       * [3. 注意事项](#3-注意事项)
          * [3.1 Android6.0以上系统权限处理（可选）](#31-android60以上系统权限处理可选)
          * [3.2 如果接入YumiAdSDK激励视频广告,请在Activity的onDestroy方法中调用MoPub.onDestroy(this)接口](#32-如果接入yumiadsdk激励视频广告请在activity的ondestroy方法中调用mopubondestroythis接口)
+         * [3.3 targetSdkVersion &gt;= 24 适配](#33-targetsdkversion--24-适配)
       * [4.Test SLOTID](#4test-slotid)
 	  
 # Mopub Mediation SDK 接入 YumiAdSDK 
@@ -120,6 +121,49 @@ Apps->Your_App->Your_Ad_Unit_Name-> Ad source
 	<b>提示：</b>调用MoPub.onDestroy(this)接口后YumiAdSDK会清理视频数据
 	</span>
 	</div>
+
+### 3.3 targetSdkVersion >= 24 适配
+ 如果您打包 App 时的 targetSdkVersion >= 24，为了让 SDK 能够正常下载、安装 App 类广告，必须按照下面的步骤做兼容性处理
+ 
+ **步骤一：在 AndroidManifest.xml 中的 Application 标签中添加 provider 标签**
+  ```java
+     <provider
+        android:name="android.support.v4.content.FileProvider"
+        android:authorities="${applicationId}.fileprovider"
+        android:exported="false"
+        android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/gdt_file_path" />
+     </provider>
+
+     <provider
+        android:name="com.baidu.mobads.openad.FileProvider"
+        android:authorities="${applicationId}.bd.provider"
+        android:exported="false"
+        android:grantUriPermissions="true">
+        <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/bd_file_paths" />
+     </provider>
+  ```
+<div style="background-color:rgb(228,244,253);padding:10px;">
+<span style="color:rgb(62,113,167);">
+<b>提示：</b>如果你的工程不支持 ${applicationId} 配置，可以将 ${applicationId} 替换为你的App包名
+</span>
+</div>
+
+**步骤二：在项目结构下的 res 目录下添加一个 xml 文件夹，下载bd_file_paths.xml和gdt_file_path.xml文件，将下载下来的xml文件添加到创建的 xml 文件夹中：**
+
+Download [bd_file_paths.xml](https://github.com/yumimobi/MopubAdapter-YumiAd-Android/tree/master/app/src/main/res/xml/bd_file_paths.xml)
+
+Download [gdt_file_path.xml](https://github.com/yumimobi/MopubAdapter-YumiAd-Android/tree/master/app/src/main/res/xml/gdt_file_path.xml)
+
+<div style="background-color:rgb(228,244,253);padding:10px;">
+<span style="color:rgb(250,0,0);">
+<b>注意：</b> 如果不进行上面的配置，会影响广告收入
+</span>
+</div>
 
 ## 4.Test SLOTID 
 
