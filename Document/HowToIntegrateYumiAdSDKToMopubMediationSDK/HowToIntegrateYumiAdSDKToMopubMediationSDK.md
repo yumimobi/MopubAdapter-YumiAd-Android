@@ -14,6 +14,7 @@
       * [3. Note](#3-note)
          * [3.1 Permissions for Android 6.0 and newer versions（Optional）](#31-permissions-for-android-60-and-newer-versionsoptional)
          * [3.2 If you loaded YumiAdSDK  rewarded video ads, please call the MoPub.onDestroy(this) interface in your Activity's onDestroy method.](#32-if-you-loaded-yumiadsdk--rewarded-video-ads-please-call-the-mopubondestroythis-interface-in-your-activitys-ondestroy-method)
+		 * [3.3 targetSdkVersion &gt;= 24 compatibility considerations](#33-targetsdkversion--24-compatibility-considerations)
       * [4.Test SLOTID](#4test-slotid)
 
 
@@ -120,6 +121,49 @@ Apps->Your_App->Your_Ad_Unit_Name-> Ad source
 	<b>Note：</b>YumiAdSDK will clean up the video data after calling the MoPub.onDestroy(this) interface.
 	</span>
 	</div>
+
+### 3.3 targetSdkVersion >= 24 compatibility considerations
+ when you package the app setting targetSdkVersion >= 24 , in order for the SDK to download and install the App class ads can be support normally, you must follow the steps below for compatibility.
+ 
+ **Step 1: Add this provider tag in the Application tag at AndroidManifest.xml**
+  ```java
+     <provider
+      android:name="android.support.v4.content.FileProvider"
+      android:authorities="${applicationId}.fileprovider"
+      android:exported="false"
+      android:grantUriPermissions="true">
+      <meta-data
+          android:name="android.support.FILE_PROVIDER_PATHS"
+          android:resource="@xml/gdt_file_path" />
+     </provider>
+
+     <provider
+            android:name="com.baidu.mobads.openad.FileProvider"
+            android:authorities="${applicationId}.bd.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/bd_file_paths" />
+    </provider>
+  ```
+<div style="background-color:rgb(228,244,253);padding:10px;">
+<span style="color:rgb(62,113,167);">
+<b>Note：</b>If your project does not support the ${applicationId} configuration, you can replace ${applicationId} with your app package name.
+</span>
+</div>
+
+**Step 2: Add an xml folder under the res directory under the project structure, download the bd_file_paths.xml and gdt_file_path.xml files, and add the downloaded xml file to the created xml folder:**
+
+Download [bd_file_paths.xml](https://github.com/yumimobi/MopubAdapter-YumiAd-Android/tree/master/app/src/main/res/xml/bd_file_paths.xml)
+
+Download [gdt_file_path.xml](https://github.com/yumimobi/MopubAdapter-YumiAd-Android/tree/master/app/src/main/res/xml/gdt_file_path.xml)
+
+<div style="background-color:rgb(228,244,253);padding:10px;">
+<span style="color:rgb(250,0,0);">
+<b>Note：</b> If you do not configure the above, it will affect the advertising revenue.
+</span>
+</div>
 
 ## 4.Test SLOTID 
 
