@@ -37,5 +37,5 @@ dependencies {
     }
 
     // yumiAd SDK
-    implementation 'com.yumimobi.ads:yumiad:1.1.0'
+    implementation 'com.yumimobi.ads:yumiad:1.1.2'
 }
