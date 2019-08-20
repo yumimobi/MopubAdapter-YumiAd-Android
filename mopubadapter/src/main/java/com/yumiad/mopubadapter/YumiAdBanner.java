@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import com.mopub.common.DataKeys;
 import com.mopub.mobileads.CustomEventBanner;
@@ -103,7 +101,7 @@ public class YumiAdBanner extends CustomEventBanner {
 
             @Override
             public void onBannerPreparedFailed(AdError adError) {
-                if(mBannerListener != null){
+                if (mBannerListener != null) {
                     mBannerListener.onBannerFailed(recodeYumiError(adError));
                 }
             }
@@ -134,7 +132,7 @@ public class YumiAdBanner extends CustomEventBanner {
     @Override
     protected void onInvalidate() {
         ZplayDebug.e(TAG, "onInvalidate", onoff);
-        if(banner != null){
+        if (banner != null) {
             banner.destroy();
         }
     }

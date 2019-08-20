@@ -27,6 +27,7 @@ public class BannerActivity extends AppCompatActivity implements MoPubView.Banne
     private MoPubView moPubView;
 
     private String MOPUB_UNIT_ID_BANNER = "bfc6e32196ca4c0dbd5f6c5af4616e72";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +53,7 @@ public class BannerActivity extends AppCompatActivity implements MoPubView.Banne
 
 
         moPubView.setAdUnitId(MOPUB_UNIT_ID_BANNER);
-        Map<String,Object> localExtras =new HashMap<>();
+        Map<String, Object> localExtras = new HashMap<>();
         localExtras.put("moPubView", moPubView);
         moPubView.setLocalExtras(localExtras);
         moPubView.setBannerAdListener(this);
@@ -60,37 +61,37 @@ public class BannerActivity extends AppCompatActivity implements MoPubView.Banne
 
     @Override
     public void onBannerLoaded(MoPubView banner) {
-        Log.i(TAG,"onBannerLoaded");
+        Log.i(TAG, "onBannerLoaded");
         setInfo("onBannerLoaded");
     }
 
     @Override
     public void onBannerFailed(MoPubView banner, MoPubErrorCode errorCode) {
-        Log.i(TAG,"onBannerFailed MoPubErrorCode :" + errorCode);
+        Log.i(TAG, "onBannerFailed MoPubErrorCode :" + errorCode);
         setInfo("onBannerFailed MoPubErrorCode :" + errorCode);
     }
 
     @Override
     public void onBannerClicked(MoPubView banner) {
-        Log.i(TAG,"onBannerClicked");
+        Log.i(TAG, "onBannerClicked");
         setInfo("onBannerClicked");
     }
 
     @Override
     public void onBannerExpanded(MoPubView banner) {
-        Log.i(TAG,"onBannerExpanded");
+        Log.i(TAG, "onBannerExpanded");
         setInfo("onBannerExpanded");
     }
 
     @Override
     public void onBannerCollapsed(MoPubView banner) {
-        Log.i(TAG,"onBannerCollapsed");
+        Log.i(TAG, "onBannerCollapsed");
         setInfo("onBannerCollapsed");
     }
 
     public void loadAd(View view) {
-        if(moPubView != null){
-            Map<String,Object> localExtras =new HashMap<>();
+        if (moPubView != null) {
+            Map<String, Object> localExtras = new HashMap<>();
             localExtras.put("moPubView", moPubView);
             moPubView.setLocalExtras(localExtras);
             moPubView.loadAd();
@@ -100,7 +101,7 @@ public class BannerActivity extends AppCompatActivity implements MoPubView.Banne
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(moPubView != null){
+        if (moPubView != null) {
             moPubView.destroy();
         }
     }
