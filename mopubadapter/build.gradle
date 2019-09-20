@@ -32,10 +32,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     // mopub sdk
-    implementation('com.mopub:mopub-sdk:+@aar') {
+    implementation('com.mopub:mopub-sdk:5.4.0') {
         transitive = true
     }
 
     // yumiAd SDK
-    implementation 'com.yumimobi.ads:yumiad:1.1.2'
+    implementation 'com.yumimobi.ads:yumiad:1.1.3'
 }

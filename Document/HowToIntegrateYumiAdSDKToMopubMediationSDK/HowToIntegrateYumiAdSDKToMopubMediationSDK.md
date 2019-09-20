@@ -47,9 +47,9 @@ allprojets {
 //add YumiAdSDK and mopub dependencies.
 dependencies {
 	//YumiAdSDK
-    implementation 'com.yumimobi.ads:yumiad:1.1.2'
+    implementation 'com.yumimobi.ads:yumiad:1.1.3'
 	// mopub sdk
-    implementation('com.mopub:mopub-sdk:+@aar') {
+    implementation('com.mopub:mopub-sdk:5.4.0') {
         transitive = true
     }
 }
