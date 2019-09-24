@@ -31,7 +31,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     // yumiAd SDK
-    implementation 'com.yumimobi.ads:yumiad:1.1.3'
+    implementation 'com.yumimobi.ads:yumiad:1.2.0'
 
      // mopub sdk
     implementation('com.mopub:mopub-sdk:5.4.0') {
