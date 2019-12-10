@@ -11,9 +11,9 @@ import com.mopub.common.SdkConfiguration;
 import com.mopub.common.SdkInitializationListener;
 
 public class MainActivity extends AppCompatActivity {
-    static final String MOPUB_UNIT_ID_INTERSTITIAL = "a23446955ad945a78fc0bf6ca4b2eb6f";
-    static final String MOPUB_UNIT_ID_BANNER = "bfc6e32196ca4c0dbd5f6c5af4616e72";
-    static final String MOPUB_UNIT_ID_REWARDED_VIDEO = "5c387b79f5c7478bb4b2f284692611e6";
+    static final String MOPUB_UNIT_ID_INTERSTITIAL = "cda07ed1040b49b491fe84f4f9a2c996";
+    static final String MOPUB_UNIT_ID_BANNER = "a6a855f5db944de8856413681371ccff";
+    static final String MOPUB_UNIT_ID_REWARDED_VIDEO = "2337db1514974536866171f51fade057";
 
     private boolean isMopubInitFinished;
 
