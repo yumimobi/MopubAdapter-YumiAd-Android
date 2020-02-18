@@ -46,7 +46,7 @@ allprojets {
 //在 module 的 build.gradle 中添加依赖
 dependencies {
 	//YumiAdSDK
-    implementation 'com.yumimobi.ads:yumiad:4.5.0.000'
+    implementation 'com.yumimobi.ads:yumiad:4.5.1.000'
 	// mopub sdk
     implementation('com.mopub:mopub-sdk:5.4.0') {
         transitive = true

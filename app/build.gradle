@@ -5,7 +5,7 @@ android {
     defaultConfig {
         applicationId "com.yumiad.mopubadapters"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -31,8 +31,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     // yumiAd SDK
-    implementation 'com.yumimobi.ads:yumiad:4.5.0.000'
-
+    implementation 'com.yumimobi.ads:yumiad:4.5.1.000'
      // mopub sdk
     implementation('com.mopub:mopub-sdk:5.4.0') {
         transitive = true
